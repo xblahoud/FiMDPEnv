@@ -176,7 +176,7 @@ class SingleAgentEnv:
         for value in dict_keys:
             if value <= energy:
                 feasible.append(value)
-        action_string = data_dict[max(feasible)]
+        action_string = data_dict[max(feasible)].label
         agent_action = ast.literal_eval(action_string)[1]
         return agent_action
         
