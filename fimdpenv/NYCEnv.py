@@ -12,9 +12,8 @@ import numpy as np
 import networkx as nx
 from decimal import Decimal
 from folium import plugins
-from fimdp import energy_solver
-from fimdp import consMDP
-from energy_solver import BUCHI
+from fimdp import consMDP, energy_solver
+from fimdp.energy_solver import BUCHI
 import matplotlib.pyplot as plt
 from matplotlib.ticker import PercentFormatter
 

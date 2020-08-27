@@ -7,6 +7,7 @@ with ocean currents.
 import ast
 import numpy as np
 from fimdp import consMDP
+from fimdp.strategy import CounterStrategy
 from decimal import Decimal
 from matplotlib import pyplot as plt
 from scipy.stats import norm
