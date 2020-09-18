@@ -185,7 +185,7 @@ class SingleAgentEnv:
             raise Exception('Warning: energy too low to take strong action.')
         
         # verify action input and decide action
-        if isinstance(action, int) and action in list(range(self.num_agents)):
+        if isinstance(action, int) and action < self.num_actions:
             self.position = np.random.choice(self.num_cells,
                                              p=self.agent_P[self.position, action, :])
         else:
