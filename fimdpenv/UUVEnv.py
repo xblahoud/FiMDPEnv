@@ -6,7 +6,7 @@ with ocean currents.
 # import required packages
 import ast
 import numpy as np
-from fimdp import consMDP
+from fimdp.core import ConsMDP
 from decimal import Decimal
 from matplotlib import pyplot as plt
 from scipy.stats import norm
@@ -168,7 +168,7 @@ class SingleAgentEnv:
         for value in dict_keys:
             if value <= energy:
                 feasible.append(value)
-        action_string = data_dict[max(feasible)]
+        action_string = data_dict[max(feasible)].label
         agent_action = ast.literal_eval(action_string)[1]
         return agent_action
         
@@ -266,7 +266,7 @@ class SingleAgentEnv:
         Method to export the UUV gridworld and target states into a pre-defined
         standard consMDP form. Returns MDP object and the target set.
         """
-        mdp = consMDP.ConsMDP()
+        mdp = ConsMDP()
     
         # Add states
         for i in range(self.num_cells):
@@ -603,7 +603,7 @@ class SynchronousMultiAgentEnv:
             for value in dict_keys:
                 if value <= energy:
                     feasible.append(value)
-            action_string = data_dict[max(feasible)]
+            action_string = data_dict[max(feasible)].label
             agent_action = ast.literal_eval(action_string)[1]
             action_array.append(agent_action)
         return action_array
@@ -705,7 +705,7 @@ class SynchronousMultiAgentEnv:
         Method to export the UUV gridworld and target states into a pre-defined
         standard consMDP form. Returns MDP object and the target set.
         """
-        mdp = consMDP.ConsMDP()
+        mdp = ConsMDP()
     
         # Add states
         for i in range(self.num_cells):
