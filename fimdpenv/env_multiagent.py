@@ -98,7 +98,7 @@ def animate_multipletargets(env, capacities_list, num_steps=100, interval=100):
     strategies_dict = {}
     for target in targets_all:
         solver = GoalLeaningES(m, env.agent_capacity[0], [target], threshold=0.1)
-        strategy = solver.get_strategy(fimdp.energy_solver.BUCHI)
+        strategy = solver.get_selector(fimdp.energy_solver.BUCHI)
         strategies_dict[target] = strategy
     
     #simulation and animation

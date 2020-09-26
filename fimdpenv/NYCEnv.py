@@ -128,8 +128,8 @@ def timeit_difftargets(m, cap, target_size = 100, num_samples = 100, num_tests=5
     for i in range(num_samples):
         targets = np.random.randint(0, high=m.num_states, size=(target_size))
         def calc_time():
-            s = energy_solvers.EnergySolver(m, cap=cap, targets=targets)
-            s.get_strategy(obj, recompute=True)
+            s = energy_solvers.BasicES(m, cap=cap, targets=targets)
+            s.get_selector(obj, recompute=True)
         comptime[i] = timeit.timeit(calc_time, number=num_tests)/num_tests
     return comptime
 
@@ -188,8 +188,8 @@ def timeit_diffcaps(m, targets, cap_bound , num_samples = 20, num_tests=10, obj=
     cap_list = np.linspace(1,cap_bound, num_samples,dtype = int)
     for i in range(num_samples):
         def calc_time():
-            s = energy_solvers.EnergySolver(m, cap=cap_list[i], targets=targets)
-            s.get_strategy(obj, recompute=True)
+            s = energy_solvers.BasicES(m, cap=cap_list[i], targets=targets)
+            s.get_selector(obj, recompute=True)
         comptime.append((cap_list[i], timeit.timeit(calc_time, number=num_tests)/num_tests))
     return comptime
 
@@ -249,8 +249,8 @@ def timeit_difftargetsizes(m, cap, size_bound , num_samples = 20, num_tests=10, 
     for i in range(num_samples):
         def calc_time():
             targets = np.random.randint(0, high=m.num_states, size=(targetsize_list[i]))
-            s = energy_solvers.EnergySolver(m, cap=cap, targets=targets)
-            s.get_strategy(obj, recompute=True)
+            s = energy_solvers.BasicES(m, cap=cap, targets=targets)
+            s.get_selector(obj, recompute=True)
         comptime.append((targetsize_list[i], timeit.timeit(calc_time, number=num_tests)/num_tests))
     return comptime
 
@@ -292,8 +292,8 @@ def visualize_strategy(strategy, m, targets):
     Examples
     --------
     >>> m, targets = ch_parser.parse('NYCstreetnetwork.json')
-    >>> s = energy_solvers.EnergySolver(m, cap=100, targets=targets)
-    >>> strategy = s.get_strategy(BUCHI, recompute=True)
+    >>> s = energy_solvers.BasicES(m, cap=100, targets=targets)
+    >>> strategy = s.get_selector(BUCHI, recompute=True)
     >>> mapobj = visualize_strategy(strategy, m, targets)
     
     """
